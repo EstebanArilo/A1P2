@@ -234,4 +234,29 @@ package org.example.tallerbicicletas.model;
                 visitante.notificarEstadoBicicleta(mensaje);
             }
         }
+        public boolean asignarMecanicoAOrden(int idOrden, int idMecanico) {
+            OrdenServicio orden = buscarOrdenServicio(idOrden);
+            Mecanico mecanico = buscarMecanicoPorId(idMecanico);
+
+            if (orden != null && mecanico != null) {
+                orden.setMecanico(mecanico);
+                return true;
+            }
+            return false;
+        }
+
+        public ArrayList<OrdenServicio> buscarOrdenesDelMecanico(int idMecanico) {
+            ArrayList<OrdenServicio> ordenesDelMecanico = new ArrayList<>();
+
+            for (OrdenServicio orden : this.listOrdenServicio) {
+                if (orden.getMecanico() != null && orden.getMecanico().getId() == idMecanico) {
+                    ordenesDelMecanico.add(orden);
+                    System.out.println("Orden asignada:" + orden.getIdOrden() + "Motivo del servicio: "+ orden.getMotivoServicio()+"Diagnostico: "+orden.getDiagnostico()+"Costo Total:"+ orden.getCostoTotal());
+                }
+            }
+            if (ordenesDelMecanico.isEmpty()) {
+                System.out.println("No se encontraron órdenes asignadas al mecánico con ID: " + idMecanico);
+            }
+            return ordenesDelMecanico;
+        }
     }
