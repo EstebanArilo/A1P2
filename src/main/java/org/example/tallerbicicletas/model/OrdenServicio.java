@@ -2,18 +2,20 @@ package org.example.tallerbicicletas.model;
 
 
     import java.time.LocalDate;
+    import java.time.LocalTime;
 
-    public class OrdenServicio {
+public class OrdenServicio {
         private LocalDate fechaIngreso;
-        private String hora;
+        private LocalTime hora;
         private Bicicleta bicicleta;
         private Mecanico mecanico;
         private String motivoServicio;
         private String diagnostico;
-        private int trabajosRealizados;
+        private String trabajosRealizados;
         private double costoTotal;
+        private int idOrden;
 
-        public OrdenServicio(LocalDate fechaIngreso, String hora, Bicicleta bicicleta, Mecanico mecanico, String motivoServicio, String diagnostico, int trabajosRealizados, double costoTotal) {
+        public OrdenServicio(LocalDate fechaIngreso, LocalTime hora, Bicicleta bicicleta, Mecanico mecanico, String motivoServicio, String diagnostico, String trabajosRealizados, double costoTotal, int idOrden) {
             this.fechaIngreso = fechaIngreso;
             this.hora = hora;
             this.bicicleta = bicicleta;
@@ -22,6 +24,7 @@ package org.example.tallerbicicletas.model;
             this.diagnostico = diagnostico;
             this.trabajosRealizados = trabajosRealizados;
             this.costoTotal = costoTotal;
+            this.idOrden=idOrden;
         }
 
         public LocalDate getFechaIngreso() {
@@ -32,11 +35,11 @@ package org.example.tallerbicicletas.model;
             this.fechaIngreso = fechaIngreso;
         }
 
-        public String getHora() {
+        public LocalTime getHora() {
             return hora;
         }
 
-        public void setHora(String hora) {
+        public void setHora(LocalTime hora) {
             this.hora = hora;
         }
 
@@ -72,15 +75,23 @@ package org.example.tallerbicicletas.model;
             this.diagnostico = diagnostico;
         }
 
-        public int getTrabajosRealizados() {
+        public String getTrabajosRealizados() {
             return trabajosRealizados;
         }
 
-        public void setTrabajosRealizados(int trabajosRealizados) {
+        public void setTrabajosRealizados(String trabajosRealizados) {
             this.trabajosRealizados = trabajosRealizados;
         }
 
-        public double getCostoTotal() {
+    public int getIdOrden() {
+        return idOrden;
+    }
+
+    public void setIdOrden(int idOrden) {
+        this.idOrden = idOrden;
+    }
+
+    public double getCostoTotal() {
             return costoTotal;
         }
 

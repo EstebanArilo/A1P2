@@ -1,6 +1,8 @@
 package org.example.tallerbicicletas.model;
 
 
+    import java.time.LocalDate;
+    import java.time.LocalTime;
     import java.util.ArrayList;
 
     public class Taller {
@@ -104,13 +106,24 @@ package org.example.tallerbicicletas.model;
             }
             return null;
         }
-
         public boolean eliminarCliente(int id) {
             for (Cliente c : this.listCliente) {
                 if (c.getId() == (id)) {
                     return this.listCliente.remove(c);
                 }
             }
+            return false;
+        }
+        public boolean actualizarCliente(int id, String nuevoNombre, int nuevoTelefono, String nuevaDireccion) {
+            Cliente c= buscarClientePorId(id);
+
+            if (c != null) {
+                c.setNombre(nuevoNombre);
+                c.setTelefono(nuevoTelefono);
+                c.setDireccion(nuevaDireccion);
+                return true;
+            }
+
             return false;
         }
         public void registrarMecanico(Mecanico nuevoMecanico) {
@@ -134,9 +147,22 @@ package org.example.tallerbicicletas.model;
             }
             return false;
         }
+        public boolean actualizarMecanico(int id, String nuevoNombre, int nuevoTelefono, TipoEspecializacion nuevoTipoEspecializacion, int NuevoNumeroCertificacion) {
+            Mecanico m= buscarMecanicoPorId(id);
+
+            if (m != null) {
+                m.setNombre(nuevoNombre);
+                m.setTelefono(nuevoTelefono);
+                m.setTipoEspecializacion(nuevoTipoEspecializacion);
+                m.setNumeroCertificacion(NuevoNumeroCertificacion);
+                return true;
+            }
+            return false;
+        }
         public void registrarBicicleta(Bicicleta nuevoBicicleta) {
             listBicicleta.add(nuevoBicicleta);
         }
+
         public boolean eliminarBicicleta(int numeroSerial) {
             for (Bicicleta b : this.listBicicleta) {
                 if (b.getNumeroSerial() == (numeroSerial)) {
@@ -144,5 +170,68 @@ package org.example.tallerbicicletas.model;
                 }
             }
             return false;
+        }
+        public Bicicleta buscarBicicletaPorNumeroSerial(int numeroSerial) {
+            for (Bicicleta b : this.listBicicleta) {
+                if (b.getNumeroSerial() == (numeroSerial)) {
+                    return b;
+                }
+            }
+            return null;
+        }
+        public boolean actualizarBicicleta(String nuevoMarca, String nuevoColor, int numeroSerial, int nuevoAño, TipoBicicleta nuevoTipoBicicleta) {
+            Bicicleta b= buscarBicicletaPorNumeroSerial(numeroSerial);
+
+            if (b != null) {
+                b.setMarca(nuevoMarca);
+                b.setColor(nuevoColor);
+                b.setAño(nuevoAño);
+                b.setTipoBicicleta(nuevoTipoBicicleta);
+                return true;
+            }
+            return false;
+        }
+        public void crearOrdenServicio(OrdenServicio nuevoOrdenServicio) {
+            listOrdenServicio.add(nuevoOrdenServicio);
+        }
+
+        public boolean eliminarOrdenServicio(int idOrden) {
+            for (OrdenServicio o : this.listOrdenServicio) {
+                if (o.getIdOrden() == (idOrden)) {
+                    return this.listBicicleta.remove(o);
+                }
+            }
+            return false;
+        }
+        public OrdenServicio buscarOrdenServicio(int idOrden) {
+            for (OrdenServicio o : this.listOrdenServicio) {
+                if (o.getIdOrden() == (idOrden)) {
+                    return o;
+                }
+            }
+            return null;
+        }
+        public boolean actualizarOrdenServicio(LocalDate nuevoFechaIngreso, LocalTime nuevoHora, Bicicleta nuevoBicicleta, Mecanico nuevoMecanico, String nuevoMotivoServicio, String nuevoDiagnostico, String nuevoTrabajosRealizados, double nuevoCostoTotal, int idOrden) {
+            OrdenServicio o = buscarOrdenServicio(idOrden);
+
+            if (o != null) {
+                o.setFechaIngreso(nuevoFechaIngreso);
+                o.setHora(nuevoHora);
+                o.setBicicleta(nuevoBicicleta);
+                o.setMecanico(nuevoMecanico);
+                o.setMotivoServicio(nuevoMotivoServicio);
+                o.setDiagnostico(nuevoDiagnostico);
+                o.setTrabajosRealizados(nuevoTrabajosRealizados);
+                o.setCostoTotal(nuevoCostoTotal);
+                return true;
+            }
+            return false;
+        }
+        public void notificarTodos(String mensaje) {
+
+            for (INotificable visitante : listCliente) {
+
+                visitante.notificarEstadoBicicleta(mensaje);
+            }
         }
     }

@@ -46,4 +46,10 @@ public class Cliente extends Persona implements INotificable{
         System.out.print(mensaje);
     }
 
+    @Override
+    public void notificarEstadoBicicleta(String mensaje) {
+
+    }
+
+
 }
