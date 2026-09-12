@@ -8,16 +8,16 @@ package org.example.tallerbicicletas.model;
         private String direccion;
         private int nit;
         private ArrayList<Cliente> listCliente;
-        private ArrayList<Mecanico> listmecanico;
+        private ArrayList<Mecanico> listMecanico;
         private ArrayList<Bicicleta> listBicicleta;
         private ArrayList<OrdenServicio> listOrdenServicio;
 
-        public Taller(String nombre, String direccion, int nit, ArrayList<Cliente> listCliente, ArrayList<Mecanico> listmecanico, ArrayList<Bicicleta> listBicicleta, ArrayList<OrdenServicio> listOrdenServicio) {
+        public Taller(String nombre, String direccion, int nit, ArrayList<Cliente> listCliente, ArrayList<Mecanico> listMecanico, ArrayList<Bicicleta> listBicicleta, ArrayList<OrdenServicio> listOrdenServicio) {
             this.nombre = nombre;
             this.direccion = direccion;
             this.nit = nit;
             this.listCliente = listCliente;
-            this.listmecanico = listmecanico;
+            this.listMecanico = listMecanico;
             this.listBicicleta = listBicicleta;
             this.listOrdenServicio = listOrdenServicio;
         }
@@ -54,12 +54,12 @@ package org.example.tallerbicicletas.model;
             this.listCliente = listCliente;
         }
 
-        public ArrayList<Mecanico> getListmecanico() {
-            return listmecanico;
+        public ArrayList<Mecanico> getListMecanico() {
+            return listMecanico;
         }
 
-        public void setListmecanico(ArrayList<Mecanico> listmecanico) {
-            this.listmecanico = listmecanico;
+        public void setListmecanico(ArrayList<Mecanico> listMecanico) {
+            this.listMecanico = listMecanico;
         }
 
         public ArrayList<OrdenServicio> getListOrdenServicio() {
@@ -85,9 +85,64 @@ package org.example.tallerbicicletas.model;
                     ", direccion='" + direccion + '\'' +
                     ", nit=" + nit +
                     ", listCliente=" + listCliente +
-                    ", listmecanico=" + listmecanico +
+                    ", listMecanico=" + listMecanico +
                     ", listBicicleta=" + listBicicleta +
                     ", listOrdenServicio=" + listOrdenServicio +
                     '}';
+        }
+
+        //METODOS
+        public void registrarCliente(Cliente nuevoCliente) {
+            listCliente.add(nuevoCliente);
+        }
+
+        public Cliente buscarClientePorId(int id) {
+            for (Cliente c : this.listCliente) {
+                if (c.getId() == (id)) {
+                    return c;
+                }
+            }
+            return null;
+        }
+
+        public boolean eliminarCliente(int id) {
+            for (Cliente c : this.listCliente) {
+                if (c.getId() == (id)) {
+                    return this.listCliente.remove(c);
+                }
+            }
+            return false;
+        }
+        public void registrarMecanico(Mecanico nuevoMecanico) {
+            listMecanico.add(nuevoMecanico);
+        }
+
+        public Mecanico buscarMecanicoPorId(int id) {
+            for (Mecanico m : this.listMecanico) {
+                if (m.getId() == (id)) {
+                    return m;
+                }
+            }
+            return null;
+        }
+
+        public boolean eliminarMecanico(int id) {
+            for (Mecanico m : this.listMecanico) {
+                if (m.getId() == (id)) {
+                    return this.listMecanico.remove(m);
+                }
+            }
+            return false;
+        }
+        public void registrarBicicleta(Bicicleta nuevoBicicleta) {
+            listBicicleta.add(nuevoBicicleta);
+        }
+        public boolean eliminarBicicleta(int numeroSerial) {
+            for (Bicicleta b : this.listBicicleta) {
+                if (b.getNumeroSerial() == (numeroSerial)) {
+                    return this.listBicicleta.remove(b);
+                }
+            }
+            return false;
         }
     }
