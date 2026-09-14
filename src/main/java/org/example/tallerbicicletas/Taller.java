@@ -1,4 +1,11 @@
+package org.example.tallerbicicletas;
+
+import org.example.tallerbicicletas.model.Bicicleta;
+import org.example.tallerbicicletas.model.Cliente;
+import org.example.tallerbicicletas.model.Mecanico;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Taller {
     private String nit;
@@ -28,7 +35,7 @@ public class Taller {
 
     //CRUD Registrar cliente
     public boolean registrarCliente(String id, String nombre, String numeroContacto, String direccion){
-        Cliente cliente = new Cliente(id, nombre, numeroContacto, direccion);
+        Cliente cliente = new Cliente(id,String nombre, numeroContacto, direccion);
         if(buscarClienteById(id)==-1){
             for(int i=0; i<listClientes.length; i++){
                 if(listClientes[i]==null){
@@ -41,7 +48,7 @@ public class Taller {
     }
     public int buscarClienteById(String id){
         for(int i=0; i<listClientes.length; i++){
-            if(listClientes[i]!=null && listClientes[i].getId().equals(id)){
+            if(listClientes[i]!=null && Objects.equals(listClientes[i].getId(), id)){
                 return i;
             }
         }
