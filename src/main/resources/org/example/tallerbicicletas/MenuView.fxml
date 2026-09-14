@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="550.0" prefWidth="650.0" style="-fx-background-color: #f0fdf4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tallerbicicletas.model.MenuController">
+    <center>
+        <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <!-- ENCABEZADO -->
+                <VBox alignment="CENTER" spacing="5.0">
+                    <children>
+                        <Label text="BIKE-SERVICE UQ" textFill="#15803d">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label text="Sistema Integral de Gestión y Mantenimiento de Bicicletas" textFill="#475569">
+                            <font>
+                                <Font name="System Italic" size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+
+                <!-- TARJETA CONTENEDORA DE BOTONES -->
+                <VBox alignment="CENTER" maxWidth="450.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 4);">
+                    <children>
+                        <Label text="SELECCIONE EL MÓDULO PARA INGRESAR:" textFill="#15803d">
+                            <font>
+                                <Font name="System Bold" size="11.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="5.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <!-- MÓDULO CLIENTE -->
+                        <Button maxWidth="1.5E308" onAction="#onAbrirClientes" prefHeight="42.0" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="🚲 MÓDULO CLIENTE Y BICICLETAS">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Button>
+
+                        <!-- MÓDULO MECÁNICOS Y ÓRDENES -->
+                        <Button maxWidth="1.5E308" onAction="#onAbrirMecanicos" prefHeight="42.0" style="-fx-background-color: #65a30d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="🛠 GESTIÓN DE MECÁNICOS Y ÓRDENES">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Button>
+
+                        <!-- PANEL DE NOTIFICACIONES -->
+                        <Button maxWidth="1.5E308" onAction="#onAbrirNotificaciones" prefHeight="42.0" style="-fx-background-color: #334155; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="🔔 PANEL DE NOTIFICACIONES">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+
+                <!-- BOTÓN SALIR -->
+                <Button onAction="#onSalir" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-cursor: hand;" text="✕ SALIR">
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Button>
+
+                <!-- FOOTER -->
+                <Label text="© 2026 Bike-Service UQ - Proyecto Final POO" textFill="#94a3b8">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
