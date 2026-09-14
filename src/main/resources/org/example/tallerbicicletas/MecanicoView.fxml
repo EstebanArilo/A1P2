@@ -107,7 +107,7 @@
                         <!-- FORMULARIO ORDEN DE SERVICIO -->
                         <VBox spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: #dcfce7; -fx-border-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);">
                             <children>
-                                <Label text="Crear Orden de Servicio para Mecánico Seleccionado" textFill="#15803d">
+                                <Label text="Gestión de Orden de Servicio" textFill="#15803d">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
@@ -139,11 +139,19 @@
                                         <TextField fx:id="txtCostoTotal" promptText="Ej: 85000" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                     </children>
                                 </GridPane>
-                                <Button maxWidth="1.5E308" onAction="#onCrearOrdenServicio" prefHeight="32.0" style="-fx-background-color: #65a30d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="+ REGISTRAR ÓRDEN DE SERVICIO">
-                                    <VBox.margin>
+
+                                <!-- BOTONERA DE GESTIÓN DE ÓRDENES -->
+                                <HBox alignment="CENTER" spacing="8.0">
+                                    <padding>
                                         <Insets top="5.0" />
-                                    </VBox.margin>
-                                </Button>
+                                    </padding>
+                                    <children>
+                                        <Button onAction="#onCrearOrdenServicio" prefHeight="30.0" style="-fx-background-color: #65a30d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Crear Orden" />
+                                        <Button onAction="#onActualizarOrdenServicio" prefHeight="30.0" style="-fx-background-color: #0284c7; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Actualizar" />
+                                        <Button onAction="#onReasignarMecanicoAOrden" prefHeight="30.0" style="-fx-background-color: #d97706; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Reasignar" />
+                                        <Button onAction="#onEliminarOrdenServicio" prefHeight="30.0" style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Eliminar" />
+                                    </children>
+                                </HBox>
                             </children>
                         </VBox>
 

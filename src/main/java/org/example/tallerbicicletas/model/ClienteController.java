@@ -176,6 +176,51 @@ public class ClienteController {
     }
 
     @FXML
+    private void onActualizarBicicleta() {
+        try {
+            int serial = Integer.parseInt(txtSerialBici.getText().trim());
+            String marca = txtMarcaBici.getText().trim();
+            String color = txtColorBici.getText().trim();
+            int anio = Integer.parseInt(txtAnoBici.getText().trim());
+            TipoBicicleta tipo = cbTipoBici.getValue();
+
+            if (marca.isEmpty() || color.isEmpty() || tipo == null) {
+                mostrarAlerta(Alert.AlertType.WARNING, "Campos Incompletos", "Complete todos los datos de la bicicleta.");
+                return;
+            }
+
+            boolean exito = taller.actualizarBicicleta(marca, color, serial, anio, tipo);
+
+            if (exito) {
+                limpiarCamposBici();
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Bicicleta actualizada correctamente.");
+            } else {
+                mostrarAlerta(Alert.AlertType.WARNING, "No Encontrada", "No existe una bicicleta registrada con ese número serial.");
+            }
+        } catch (NumberFormatException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error de Formato", "El serial y el año deben ser valores numéricos.");
+        }
+    }
+
+    @FXML
+    private void onEliminarBicicleta() {
+        try {
+            int serial = Integer.parseInt(txtSerialBici.getText().trim());
+
+            boolean exito = taller.eliminarBicicleta(serial);
+
+            if (exito) {
+                limpiarCamposBici();
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Bicicleta eliminada correctamente.");
+            } else {
+                mostrarAlerta(Alert.AlertType.WARNING, "No Encontrada", "No existe una bicicleta con ese número serial.");
+            }
+        } catch (NumberFormatException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error de Formato", "Ingrese un número serial válido.");
+        }
+    }
+
+    @FXML
     private void onVolverMenu(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/tallerbicicletas/MenuView.fxml"));

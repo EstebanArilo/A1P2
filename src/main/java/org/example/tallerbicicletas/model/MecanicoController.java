@@ -203,6 +203,79 @@ public class MecanicoController {
             mostrarAlerta(Alert.AlertType.ERROR, "Error de Formato", "Verifique el formato de la hora (HH:mm) y que el N° de orden y costo sean numéricos.");
         }
     }
+
+
+    @FXML
+    private void onActualizarOrdenServicio() {
+        try {
+            int idOrden = Integer.parseInt(txtIdOrden.getText().trim());
+            LocalDate fecha = dpFechaIngreso.getValue();
+            LocalTime hora = LocalTime.parse(txtHoraIngreso.getText().trim());
+            Bicicleta bicicleta = cbBicicletaOrden.getValue();
+            Mecanico mecanico = tblMecanicos.getSelectionModel().getSelectedItem();
+            String motivo = txtMotivoServicio.getText().trim();
+            String diagnostico = txtDiagnostico.getText().trim();
+            String trabajos = txtTrabajosRealizados.getText().trim();
+            double costo = Double.parseDouble(txtCostoTotal.getText().trim());
+
+            boolean exito = taller.actualizarOrdenServicio(fecha, hora, bicicleta, mecanico, motivo, diagnostico, trabajos, costo, idOrden);
+
+            if (exito) {
+                if (mecanico != null) {
+                    cargarOrdenesDelMecanico(mecanico.getId());
+                }
+                limpiarCamposOrden();
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Orden de servicio actualizada correctamente.");
+            } else {
+                mostrarAlerta(Alert.AlertType.WARNING, "No Encontrada", "No se encontró una orden con ese ID.");
+            }
+        } catch (Exception e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error de Formato", "Verifique el formato de los campos (hora HH:mm, valores numéricos).");
+        }
+    }
+
+    @FXML
+    private void onEliminarOrdenServicio() {
+        OrdenServicio seleccionada = tblOrdenesMecanico.getSelectionModel().getSelectedItem();
+
+        if (seleccionada == null) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Selección Requerida", "Seleccione una orden de la tabla para eliminar.");
+            return;
+        }
+
+        boolean exito = taller.eliminarOrdenServicio(seleccionada.getIdOrden());
+
+        if (exito) {
+            Mecanico mecanico = tblMecanicos.getSelectionModel().getSelectedItem();
+            if (mecanico != null) {
+                cargarOrdenesDelMecanico(mecanico.getId());
+            }
+            limpiarCamposOrden();
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Orden de servicio eliminada correctamente.");
+        } else {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo eliminar la orden.");
+        }
+    }
+
+    @FXML
+    private void onReasignarMecanicoAOrden() {
+        OrdenServicio ordenSeleccionada = tblOrdenesMecanico.getSelectionModel().getSelectedItem();
+        Mecanico nuevoMecanico = tblMecanicos.getSelectionModel().getSelectedItem();
+
+        if (ordenSeleccionada == null || nuevoMecanico == null) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Selección Incompleta", "Seleccione un mecánico y una orden para realizar la asignación.");
+            return;
+        }
+
+        boolean exito = taller.asignarMecanicoAOrden(ordenSeleccionada.getIdOrden(), nuevoMecanico.getId());
+
+        if (exito) {
+            cargarOrdenesDelMecanico(nuevoMecanico.getId());
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Orden reasignada al mecánico " + nuevoMecanico.getNombre() + ".");
+        } else {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo reasignar la orden.");
+        }
+    }
     @FXML
     private void onVolverMenu(ActionEvent event) {
         try {

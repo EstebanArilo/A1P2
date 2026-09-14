@@ -39,20 +39,23 @@ public class Cliente extends Persona implements INotificable {
 
     @Override
     public void notificarEstadoBicicleta(String mensaje) {
+        recibirEstadoBicicleta(mensaje);
+    }
+
+    @Override
+    public void recibirEstadoBicicleta(String mensaje) {
         if (mensaje != null && !mensaje.trim().isEmpty()) {
             this.ultimoEstadoNotificado = mensaje;
+            if (this.listNotificaciones == null) {
+                this.listNotificaciones = new java.util.ArrayList<>();
+            }
             this.listNotificaciones.add(0, mensaje);
         }
     }
 
     @Override
     public String recibirEstadoBicicleta() {
-        return this.ultimoEstadoNotificado;
-    }
-
-    @Override
-    public void recibirEstadoBicicleta(String mensaje) {
-
+        return (this.ultimoEstadoNotificado != null) ? this.ultimoEstadoNotificado : "Sin notificaciones";
     }
 
     @Override
