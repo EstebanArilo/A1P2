@@ -5,7 +5,7 @@ package org.example.tallerbicicletas.model;
     import java.time.LocalTime;
 
 public class OrdenServicio {
-        private LocalDate fechaIngreso;
+    private LocalDate fechaIngreso;
         private LocalTime hora;
         private Bicicleta bicicleta;
         private Mecanico mecanico;

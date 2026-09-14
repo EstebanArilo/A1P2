@@ -7,7 +7,7 @@ package org.example.tallerbicicletas.model;
 
         public Mecanico(String nombre, int id, int telefono, TipoEspecializacion tipoEspecializacion, int numeroCertificacion) {
             super(nombre, id, telefono);
-            tipoEspecializacion = tipoEspecializacion;
+            this.tipoEspecializacion = tipoEspecializacion;
             this.numeroCertificacion = numeroCertificacion;
         }
 

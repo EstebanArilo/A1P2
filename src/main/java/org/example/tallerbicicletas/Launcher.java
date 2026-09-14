@@ -1,9 +1,9 @@
 package org.example.tallerbicicletas;
 
-import javafx.application.Application;
-
 public class Launcher {
+
     public static void main(String[] args) {
-        Application.launch(HelloApplication.class, args);
+        // Llama directamente al main de la clase Application
+        HelloApplication.main(args);
     }
 }
